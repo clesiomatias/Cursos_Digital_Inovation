@@ -1,0 +1,649 @@
+FUNDAMENTOS DA ARQUITETURA DE SISTEMAS
+
+
+
+1 - O que são Web Services?
+
+"São soluções para aplicações se comunicarem idenpendentemente de linguagem, softwares , S.O. e linguagem utilizados."
+
+- Inicialmente os serviços web foram criados para troca de mensagens utilizando a linguagem XML (Extensible Markup Language), sobre o protocolo HTTP, sendo identificado por uma URI (Uniform Resource Identifier).
+
+- Podemos dizer também que Serviços Web são API's (Application Programming Interface) que se comunicam por meio de redes sobre o protocolo HTTP.
+
+OBS: API = É um conjunto de padrões de programação que permite a construção de aplicativos e a sua utilização não tão evidentes para os usuários.
+
+- A comunicação entre Web Services de empresas diferentes não são acessadas diretamente no Banco de Dados;
+
+- Antes, antes dos Web Services, essa comutação entre as empresas era realizada através de troca de mensagens ou de arquivos com conteúdo, através de repositórios compartilhados, onde todos colaboravam e todos utilizavam as informações lá contidas;
+
+- Para solucionar o problema de acesso direto aos bancos de dados e o problema da lentidão ao compartilhar arquivos em repositórios, foi criado o Web Service;
+
+- O Web Service terá acesso ao banco de dados de forma independente, ou seja, através de um servidor onde a aplicação (página, programa, etc), da empresa não esteja funcionando. Dessa forma, afirmamos que o servidor Web Service irá expor o R.I. para que a aplicação da outra empresa acesse o banco de dados.
+
+- O acesso ao Web Service é feito através de linguagens de marcação como:
+
+* XML
+
+* JSON
+
+* etc...
+
+- Essa linguagem de marcação é quase que universal e é o que padroniza a comunicação entre servidores e aplicações de diferentes S.O. ou linguagens de programação. 
+
+- Tudo isso é feito pelo protocolo HTTP através de um endereço de R.I. 
+
+Passo a Passo: 
+
+- Vamos supor que um Web Service "X" disponibilize em seu Web Service uma aplicação cujo conteúdo está disponível no R.I. http://webservice.com/dados. 
+
+- O servidor "Y" fará uma requisição web pro Web Service "X";
+
+- O Web Service "X" fará a leitura dessa requisição e em cima dessa requisição, fará uma consulta em seu Banco de Dados e devolve o conteúdo para a aplicação "Y";
+
+As vantagens de utilizar um Web Service são:
+
+- Linguagem comum, fazendo com que todas as linguagens de programação sejam compatíveis;
+
+- Integração universal com o a comunidade;
+
+- Reutilização de implementação, uma vez que o retorno é sempre o mesmo, mas pode ser utilizado em diversas aplicações;
+
+- Melhora a segurança, pois Banco de Dados está guardado na intranet e apenas o servidor do Web Service pode acessar;
+
+- Velocidade nas integrações.
+
+- Custos, pois fica muito mais mais baixo fazer integrações, evitando a construção de uma mesma aplicação que realiza a mesma função por inúmeros programadores.
+
+- Evolução das aplicações, uma vez que a comunidade, de acordo com a necessidade, irá evoluir a aplicação o que contribuirá para a comunidade como um todo.
+
+Principais Tecnologias Utilizadas no Curso
+
+- SOAP - Está associado ao XML
+
+- REST - Está associado ao JSON, mas pode ser associado também ao XML e outras linguagens de marcação.
+
+- XML - Linguagem de marcação
+
+- JSON - Linguagem de marcação
+
+
+
+
+
+
+
+ESTRUTURA SOAP E XML
+
+
+
+1) O que é SOAP?
+
+"SOAP é o acrônomo de Simple Object Access Protocol."
+
+"É um protocolo baseado em XML para acessar serviços Web, principalmente por HTTP."
+
+"Pode-se dizer que SOAP é uma definição de como serviços Web se comunicam."
+
+"Foi desenvolvido para facilitar as integrações entre aplicações em servidores distintos."
+
+
+
+2) Vantagens
+
+- Permite integrações entre aplicações, independete de linguagem, pois usa como linguagem comum o XML, que é integrada com quase todas as demais linguagens existentes (Python, Java, JavaScript, etc);
+
+- É independente de plataforma e software, ou seja, não depende de sistema operacional e nem de instalação para funcionar;
+
+- Meio de transporte genérico, ou seja, pode ser usado por outros protocoloes além do HTTP, como por exemplo os protocolos SMTP, etc.
+
+
+
+3) O que é XML?
+
+"XML é o acrônomopara Extensible Markup Language."
+
+"É uma linguagem de marcação criada na década de 90 pela W3C."
+
+OBS: W3C é uma organização de padronização da Word Wide Web (www).
+
+"Facilita a separação de conteúdo."
+
+"Não tem limitação de criação de tags."
+
+"Linguagem comum para integrações entre aplicações."
+
+OBS: O XML nem sempre utilizará o SOAP, mas o SOAP sempre estará utilizando o XML.
+
+
+
+4) Estrutura SOAP
+
+"O "SOAP Message" possui uma estrutura única que deve sempre ser seguida. Ou seja, sempre que for enviar uma mensagem XML, essa mensagem precisa seguir a seguinte estrutura.
+
+-----------------------------
+
+| SOAP Envelop | >> SOAP Envelope é o primeiro elemento do documento e é usado para encapsular toda a mensagem SOAP.
+
+| |
+
+| --------------------- |
+
+| | SOAP Header | | >> SOAP Header é o elemento onde possui informações de atributos e metadados de requisição. Exemplo: Credenciais de identificação, Token, etc.
+
+| --------------------- |
+
+| |
+
+| --------------------- |
+
+| | SOAP Body | | >> SOAP Body é o elemento que contém os detalhes da mensagem. É onde fica o conteúdo da mensagem
+
+| | | |
+
+| | | |
+
+| | | |
+
+| --------------------- |
+
+| |
+
+-----------------------------
+
+
+
+Exemplo de Mensagem SOAP
+
+
+
+<soap: Envelope xmlns:soap="http://w3org/2003/05/soap-envelop"> (O padrão dessa linha sempre irá existir)
+
+<soap:Header> (Mesmo estando vazio, é importante manter o elemento Header)
+
+</soap:Header>
+
+<soap:Body>
+
+<m:MetodoEndereco xmlns:m="http://www.example.org/endereco">
+
+<m:Cidade>Rio de Janeiro</m:Cidade>
+
+<m:CEP>99999-99</m:CEP>
+
+<m:Logradouro>Avenida Atlântida</m:logradouro>
+
+<m:Numero>99</m:Numero>
+
+</m:Endereco>
+
+<soap:Body>
+
+
+
+</soap:Envelope>
+
+
+
+
+
+
+
+ENTENDENTO O QUE É WSDL E XSD
+
+
+
+1) O que WSDL?
+
+"É o acrônomo de Web Services Description Language."
+
+"É usado para descrever Web Services e funciona como um contrato do serviço."
+
+"A descrição é feita em um documento XML, onde é descrito o serviço, especificações de acesso, operações e métodos."
+
+
+
+2) O que é XDS?
+
+"É o acrônomo de XMD Schema Definition."
+
+"É um schema no vormato XML usado para definir a estrutura de dados que será validada no XML."
+
+"O XSD funciona como uma documentação de como deve ser montado o SOAP Message (XML) que será enviado através de Web Service. Ele define qual é o tipo (string, inteiro) de dado que cada metadado irá receber e quais os metadados são obrigatórios para inserir as informações no servidor."
+
+Exemplo: O Web Service permite que eu cadastre um endereço. Então é o XSD quem vai definir os parâmetros que o arquivo deverá estar para fazer a inserção desses dados. 
+
+ 
+
+3) Vamos à Prática!
+
+O R.I. do Web Service utilizado é http://soapclient.com/xml/soapresponder.wsdl
+
+- Esse Web Service é púbico 
+
+- A extensão ".wsdl" (ou "?wsds") quer dizer que ele também traz o contrato dentre outros serviços.
+
+- Vamos agora estudar o código.
+
+OBS: Existem ferramentas que ajudam a analisar o WSDL. Apesar de ter algumas anotações abaixo, é bom que acesse SoapUI para download e analisar o documento.
+
+Abaixo o nosso WSDL:
+
+<definitions xmlns:tns="http://www.SoapClient.com/xml/SoapResponder.wsdl" xmlns:xsd1="http://www.SoapClient.com/xml/SoapResponder.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/" name="SoapResponder" targetNamespace="http://www.SoapClient.com/xml/SoapResponder.wsdl">
+
+
+
+<types>
+
+<schema xmlns="http://www.w3.org/1999/XMLSchema" targetNamespace="http://www.SoapClient.com/xml/SoapResponder.xsd"> </schema>
+
+</types>
+
+
+
+<message name="Method1"> //Esse é o único método que tem dentro desse serviço.
+
+<part name="bstrParam1" type="xsd:string"/> //Primeiro atributo para a operação //O Tipo do XSD é string
+
+<part name="bstrParam2" type="xsd:string"/> //Segundo atributo para a operação //O Tipo do XSD é string
+
+</message>
+
+
+
+<message name="Method1Response"> //Esse é a resposta (ver o "binding" abaixo)
+
+<part name="bstrReturn" type="xsd:string"/> //Atributo do que será retornado
+
+</message>
+
+
+
+<portType name="SoapResponderPortType">
+
+<operation name="Method1" parameterOrder="bstrparam1 bstrparam2 return">
+
+<input message="tns:Method1"/>
+
+<output message="tns:Method1Response"/>
+
+</operation>
+
+</portType>
+
+<binding name="SoapResponderBinding" type="tns:SoapResponderPortType"> //Delimita as operações existentes nesse serviço.
+
+<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+<operation name="Method1"> //Única operação que tem nesse documento
+
+<soap:operation soapAction="http://www.SoapClient.com/SoapObject"/>
+
+<input>
+
+<soap:body use="encoded" namespace="http://www.SoapClient.com/xml/SoapResponder.xsd" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+
+</input>
+
+<output>
+
+<soap:body use="encoded" namespace="http://www.SoapClient.com/xml/SoapResponder.xsd" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+
+</output>
+
+</operation>
+
+</binding>
+
+
+
+<service name="SoapResponder">
+
+<documentation>
+
+A SOAP service that echoes input parameters in the response
+
+</documentation>
+
+
+
+<port name="SoapResponderPortType" binding="tns:SoapResponderBinding">
+
+<soap:address location="http://www.soapclient.com/xml/soapresponder.wsdl"/>
+
+</port>
+
+</service>
+
+</definitions>
+
+
+
+
+
+
+
+APRENDA A QUESTÃO DO REST, API E JSON
+
+
+
+1)O que é REST?
+
+"É o acrônomode Representation State Transfer."
+
+"O REST não é um protocolo. Ele é um estilo de arquitetura de software que define a implementação de um Web Service e vai rodar sobre o HTTP."
+
+"Podem trabalhar com os formatos XML, JSON ou outros."
+
+
+
+2) Vantagensdo REST.
+
+1 - Permite integrações (comutação de dados, integração de serviços, etc), entre aplicações e também entre cliente e servidor em páginas web e aplicações.
+
+É graças aos Web Services que existem grande procura por proficionais front-end e back-end.
+
+Muitas páginas páginas de web (front-end), que são escritas com HTML, CSS, JavaScript, etc, consomem "serviços" por trás, que são adquiridos via Web Service.
+
+2 - Utiliza dos métodos HTTP para definir a operação que está sendo efetuada.
+
+3 - Arquitetura de fácil compreensão.
+
+
+
+3) Estrutura do REST
+
+1) Suponhamos que temos um cliente (quem consome um serviço que pode ser uma outra aplicação que está integrando, uma página web que está integrando, um APP de celular que está integrando) e um servidor (quem disponibiliza o serviço). 
+
+2) O cliente faz uma requisição HTTP para o servidor.
+
+3) Toda requisição HTTP tem alguns métodos que podem ser GET, POST, PUT, DELET, etc.
+
+4) O servidor irá retornar um código de operação e uma mensagem, que pode ser de Texto, JSON, XML, etc.
+
+5) Códigos de operação são códigos que informam se a operação foi realizada com sucesso, se deu falha, etc.
+
+Importante!: Quando uma aplicação web disponibiliza um conjunto de rotinas e padrões através de serviços web, podemos chamar esse conjunto de API.
+
+
+
+4) O que é API?
+
+"É o acrônomode Application Programming Interface. É quando uma aplicação disponibiliza um Web Service denominamos esse Web Service de API, porque é uma interface de programação daquela aplicação."
+
+"São conjuntos de rotinas documentados e disponibilizados por uma aplicação para que outras aplicações possam consumir suas funcionalidades."
+
+"Ficou popular com o aumento dos Web Services."
+
+"As maiores plataformas de tecnologia disponibilizam APIs para acesso de suas funcionalidades, algumas delas são: FaceBook, Twitter, Telegram, WhatsApp, GitHub, etc."
+
+5) Principais Métodos HTTP
+
+1 - GET - Solicita a representação de um recurso (solicita o monitoramento da informação naquele momento. Exemplo: monitora como está um Twitte que fiz há um tempo atrás).
+
+2 - POST - Solicita a criação de um recurso (solicita a criação de informações. Exmplo: criar um Twitte).
+
+3 - DELETE - Solicita a exclusão de um recurso(solicita a exclusão de informações. Exemplo: apagar um Twitte).
+
+4 - PUT - Solicita a atualização de um recurso (solicita a alteração de informações. Excmplo: solicita a mudança e atualização de um Twitte).
+
+
+
+OBS: Para o serviço ser REST ele deve seguir a arquitetura corretamente.
+
+
+
+6) O que é JSON?
+
+"É o acrônomo de JavaScript Object Notation."
+
+"É um objeto de notação (representação) JavaScript, mas pode ser utilizado por outra linguagem também."
+
+"Formatação leve utilizada para troca de mensagens entre sistemas."
+
+"Usa-se de uma estrutura de chave e valor e também de listas ordenadas."
+
+"Um dos formatos mais populares e mais utilizados para troca de mensagens entre sistemas."
+
+Exemplo de estrutura do JSON:
+
+
+
+{ //Sempre inicia com uma chave
+
+"nome": "Os Vingadores",
+
+"ano_lancamento": "2019",
+
+"personagens":
+
+[ //Exemplo de lista ordenada de atributo. Elas sempre se manterão na ordem que foram criadas.
+
+{ 
+
+"nome": "Thanos" //Nome é o atributo. Valor do atributo é Thanos.
+
+},
+
+{
+
+"nome": "Homem de Ferro"
+
+}
+
+{
+
+"nome": "Thor"
+
+}
+
+] //Finaliza a lista ordenada
+
+} //Finaliza a chave inicial
+
+
+
+
+
+
+
+VEJA SOBRE INTEGRAÇÃO COM REST E MÉTODOS HTTP NA PRÁTICA
+
+
+
+1) Como funciona a integração com serviços REST?
+
+
+
+2) Métodos HTTP na prática
+
+Utilizar o software Postman.
+
+
+
+3) Códigos de estado HTTP
+
+- Códigos de estado (status code), é utilizado pelo servidor para avisar o cliente sobre o estado da operação solicitada
+
+- Esse código é uma representação de como foi sucedida a operação solicitada.
+
+- Essa é um forma de padronizar as mensagens.
+
+- Independente do Web Service, todos utilizam esses status code.
+
+- Os códigos vão de 100 a 500, mas os códigos que vão de 100 ao 199 não é utilizado.
+
+- Os códigos são:
+
+1xx - Informativo - Informa sobre o processamento da aplicação.
+
+2xx - Sucesso - Informa que a solicitação foi recebida e processada com sucesso.
+
+3xx - Redirecionamento - É muito pouco usado. Informa que é necessário realizar alguma ação além da solicitada.
+
+4xx - Erro do Cliente - Informa que quem está fazendo requisição está enviando alguma informação errada ou uma RI inválida. Ex: Erro 404 Not Found.
+
+5xx - Erro do Servidor - Informa que o servidor, ao processar a requisição, encontrou um erro.
+
+Podemos visualizar exemplo de códigos no endereço: https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status
+
+
+
+
+
+
+
+CONCEITO DE ARQUITETURA EM APLICAÇÃO PARA INTERNET
+
+
+
+1) Tipos de Arquitetura e Comparando os modelos Monolito e Microserviços.
+
+
+
+1 - Monolito: Clientes externos acessam, através de Proxy HTTP, uma aplicação, que pode ter mais instâncias, que ficarão contidas no servidor e organizadas por um sistema de orquestração de aplicação. Essas instâncias estarão conectadas a um ou mais Data Base.
+
+- As aplicações são interdependentes. Se temos três aplicações, por exemplo, e desligamos a #2 e a #3, a #1 continuaria funcionando. Porém, com o aumento da demanda, essa única aplicação pode se tornar insuficiente para atender o número de acessos requisitados pelos lientes, comandos ou serviços.
+
+- As instâncias também são importantes para resguardar a aplicação em uma possível situação de erro. Caso um deles dê erro, outros continuarão a atender os request's, sem derrubar o serviço.
+
+- Esse é o tipo de estrutura mais simples, porém ela tem alguns pontos falhos. Veremos mais abaixo.
+
+- Um Monolito é basicamente códigos onde teremos um Code Base que nos dará comunicação de uma funcionalidade com outra funcionalidade, através de chamada de código no sistema.
+
+- Vantagens
+
+a) Baixa complexidade
+
+b) Monitoramento simplificado
+
+- Desvantagens
+
+a) Stack única - Podemos utilizar apenas uma tecnologia
+
+b) Compartilhamento de recursos
+
+c) Acoplamento 
+
+d) Mais complexo a escalabilidade - Alta demanda da máquina, trazendo maior lentidão no processamento.
+
+2 - Microserviços
+
+- Existe diversas estratégias de elaborar um microserviço. Vamos citar 3:
+
+* Microserviços #1
+
+- Nessa exemplo teremos clientes acessando, através de Proxi HTML, uma Cluster que contém serviços. Esses serviços podem se comunicar e serão eles que darão acesso aos Bancos de Dados ou Banco de Serviços.
+
+- Diferente do Monolito, onde temos apenas uma aplicação e mais instâncias da mesma aplicação para atender à demanda de request's, nos microserviços teremos um serviço para cada operação e cada serviço está ficará dentro de um Nodo que serão independentes entre si.
+
+- Todos os serviços estarão disponíveis dentro de um Cluster.
+
+- Assim como no Monolito, o serviço #1 pode acabar recebendo uma grande demanda de acessos/request's/serviços e essa instância pode se tornar insuficiente. Para resolver esse problema, cada nodo pode conter um número de instâncias da mesma aplicação. Em resumo, teremos uma estrutura de serviço do encontrado no Monolito em cada Nodo.
+
+Exemplo: Baseando-se no Monolito, nesse caso, podemos ter um sistema de autenticação de usuário no Serviço #1 e um sistema de pagamento no Serviço #2. Quando pensamos em Banco de Dados, percebemos que os serviços deverão estar interligados, pois os registros de pagamento devem estar vinculado ao usuário. O que ocorre é que o Serviço #1 pode acabar "chamando" diretamente o Serviço #2, podendo utilizar protocolo próprio, HTTP.
+
+- Por ter a possibilidade de os serviços se comunicarem, em um ambiente onde temos diversos serviços solicitando informações uns dos outros, essa arquitetura pode se tornar caótica, que pode funcionar, mas é sempre bom lembrar que a arquitetura sempre irá crescer e esse fator se transformará em uma fórmula cada vez mais complexa de manter e monitorar.
+
+- Vantagens
+
+a) Stack dinâmica - podemos utilizar diversas tecnologias simultaneamente (Python, Elixir, etc.), de acordo com a necessidade para cada serviços e/ou funcionalidade.
+
+b) Simples escalabilidade - Muito mais rápido, simples e menor consumo de recursos da máquina.
+
+- Desvantagens
+
+a) Acoplamento - ainda teremos ligação direta com outro serviço. Se um cair, o outro sempre terá um erro.
+
+b) Monitoramento mais complexo - várias aplicações com várias tecnologias rodando separadamente ao mesmo tempo.
+
+c) Provisionamento mais complexo - por ter vários serviços rodando, é mais complexo provisionar isso. É preciso um provisionador de Nodos, de Conteiners, e um orquestrador de Conteiners. Conforme aumenta o número dos serviços na plataforma, mais complexo se torna a plataforma.
+
+* Microserviços #2
+
+- Nessa aplicação contiruaremos tendo clientes acessando, através de Proxi HTML, uma Cluster que contém serviços. Porém, os serviços não se comunicam diretamente entre si dentro da Cluster. Nesse caso, termos um servidor chamado "Message Broker". A vantagem é que, não ficamos presos no problema de um serviço ficar dependendo do outro. Em resumo, nesse desenho, se o Serviço #1 precisa se comunicar com o Serviço #2 e o Serviço #2 parou de responder por algum motivo, o Serviço #1 não ficará indisponível, porque qualquer operação que o Serviço #1 for realizar, ele esará desacolpado dos demais serviços. Porém, o Serviço #1 sempre deixará no Message Broker uma mensagem de que aquela determinada solicitação foi realizada.
+
+- Quando o Serviço #2 voltar a funcionar, imediatamente ele irá se comunicar com o Message Broker e lá estarão todas as solicitações que foram realizadas enquanto o Serviço #2 estafa fora do ar. Assim, ao ler as solicitações disponívels no Message Broker, o Serviço #2 fornecerá as informações que foram solicitadas nesse espaço de tempo.
+
+- As vantagens são:
+
+a) Stack dinâmica
+
+b) Simples escalabilidade
+
+c) Desacoplamento
+
+d) os serviços ficarão independentes e não irão parar de funcionar caso um deles deixem de funcionar;
+
+e) o serviço que ficar inoperante pode ser substituído por outro serviço, mesmo que momentaneamente
+
+f) com o serviço de Message Broker, teremos sempre uma resposta para o serviço solicitante, mesmo que de forma retroativa.
+
+- As desvangagens são:
+
+a) Monitoramento mais complexo.
+
+b) Provisionamento mais complexo.
+
+c) A plataforma inteira fica refém do Message Broker. Caso ele venha sofrer alguma pane, a plataforma inteira sofre com isso.
+
+* Microserviços #3
+
+- Nessa arquitetura também teremos uma Cluster que englobará todos os serviços, porém em estilo "Pipeline";
+
+- Lembrando: a Pipeline terá acesso aos Nodos que por sua vez, conterão os Serviços;
+
+- Também termos clientes fazendo request's Proxy HTTP. Porém o Proxy HTTP enviará esse request's para um "Gerenciador de Pipe Line", que é uma plataforma "open source" ou "Paid Out", que ficará responsável pela organização dos Nodo's dentro da Cluster.
+
+- A idéia é de que, a Pipeline contará com determinadas funcionalidades e cada personalidade ela terá uma rotina (passo-a-passo) a seguir, até chegar no resultado final.
+
+- Vantagens são:
+
+a) Stack dinâmica
+
+b) Simples escalabilidade
+
+c) Desacoplamento
+
+d) Menor complexidade
+
+e) sempre teremos aplicações funcionando separadamente;
+
+f) cada serviço terá sua dependência diferente (Exemplo: serviço #1 depende do Banco de Dados 1, Serviço #2 depende do Serviço Externo, Serviço #3 depende do Banco de Dados 2);
+
+g) conseguimos ter o menor código possível, evitando bugs, facilitando também a manutenção;
+
+h) escolha da melhor tecnologia que se encaixa no perfil daquele "passo" dentro do Pipeline;
+
+i) quando o cliente faz uma solicitação via Proxy HTTP, o Gerenciador de Pipe Line irá determinar qual serviço será acionado. Caso, por exemplo, o Serviço #2 dê um erro, ele retornará para o Gerenciador de Pipe Line, que por sua vez, fará com que o que havia sido feito no Serviço #1 seja desfeito, evitando assim inconsistências e erros.
+
+- Desvantagens
+
+a) Provisionamento mais complexo - aqui as atenções de manutenção deve focar no Pipeline, uma vez que se ela falhar, toda a aplicação irá falhar também.
+
+b) Plataforma inteira dependente do gerenciador de pipeline.
+
+c) Ficaremos "presos" ao funcionamento do Gerenciador de Pipe Line. Uma vez que o Gerenciador saia do ar, toda plataforma ficará fora do ar.
+
+2) Comparativo Entre os Comparativos de Arquitetura
+
+Foi comparado no item anterior (#1)
+
+
+
+3) Gerenciamento de Erros e Volume de Acesso
+
+Algo que todas as arquiteturas sempre tem em comum é o gerenciamento de erros e volume de acesso. De nada serve uma arquitetura se ela parece ser simples se ela não tem um gerenciamento de erros ou um gerenciamento correto de grandes volumes de acesso.
+
+a) Gerenciamento de Erros
+
+Onde é mais complexo?
+
+* Processos asíncronos (Microserviços #2, por exemplo), porque como existem comunicações asíncronas no momento em que um serviço recebeu uma mensagem e gerou um erro, não tem como retornar e desfazer em qualquer passo anterior. O erro ocorre e fica isolado onde ocorreu, dado que a comunicação é asíncrona e o serviço anterior que produziu aquela mensagem não fica aguardando o retorno daquele serviço para saber se houve um erro ou não. Solução: cria-se uma fila separada do Message Broker e toda vez que é processada uma mensagem e ela gera um erro, ela é inserida nessa fila é feito com que a mensagem recebida seja processada novamente. Essa solução se chama Dead Letter Queue".
+
+* Pipeline - se houver um problema no Pipeline, esse passo precisa fazer um low-back dentro dele mesmo, até onde foi executado, como também precisa fazer o low-back dos passos anteriores e fazer o low-back desses passos é muito complexo e nem sempre será possível fazer isso.
+
+Soluções
+
+* Dead Letter Queue - Descrito em "Processos asíncronos".
+
+* Filas de re-tentativas - Descrito em Pipeline.

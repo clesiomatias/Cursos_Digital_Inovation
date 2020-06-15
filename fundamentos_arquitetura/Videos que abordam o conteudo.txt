@@ -1,0 +1,41 @@
+Kubernetes (orquestrador de containers)
+
+https://www.youtube.com/watch?v=mVL0nOM3AGo
+
+
+
+Docker (criação de containers). Docker Swarm é o orquestrador de containers do Docker, mas NÃO é concorrente do Kubernetes.
+
+https://www.youtube.com/watch?v=ek_RKOAlctg&t=40s
+
+https://www.youtube.com/watch?v=97jWpWp4Pnc
+
+
+
+
+
+Proxy reverso (monitora de fora da rede para dentro. Quando um cliente precisa acessar uma aplicação e você tem vários servidores)
+
+https://www.youtube.com/watch?v=Xl_X1dYN_sk
+
+
+
+Cluster / Node / Clustering / Load Balance:
+
+https://www.youtube.com/watch?v=1cVUpoAR2Qc
+
+
+
+Container:
+
+https://www.youtube.com/watch?v=-pUZBovqRcU&t=81s
+
+
+mais
+
+
+https://phoenixnap.com/kb/docker-image-vs-container
+
+
+
+https://www.youtube.com/watch?v=hCMcQfGb4cA (Docker)
